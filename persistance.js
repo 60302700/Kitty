@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { MongoClient, ObjectId } from 'mongodb';
+import bcrypt from 'bcryptjs';
 
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB_NAME || 'Meow';
@@ -55,7 +56,11 @@ async function findUserById(userId) {
 
 async function Authenticate(email, password) {
     const { Users } = collections();
-    return Users.findOne({ email: email, password: password });
+    const user = await Users.findOne({ email });
+    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+        return null;
+    }
+    return user;
 }
 // ---- Cats ----
 

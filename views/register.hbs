@@ -1,0 +1,33 @@
+<div class="card max-w-md">
+    <div class="header-bar bg-slate-dark">
+        Create Account
+    </div>
+    <div class="card-body">
+        {{#if error}}
+            <p class="alert-box alert-warning text-center">{{error}}</p>
+        {{/if}}
+
+        <form method="POST" action="/register" class="space-y-4">
+            <div class="form-group">
+                <label for="name" class="mb-2 text-sm">Name</label>
+                <input type="text" id="name" name="name" class="input-field" required value="{{values.name}}">
+            </div>
+            <div class="form-group">
+                <label for="email" class="mb-2 text-sm">Email</label>
+                <input type="email" id="email" name="email" class="input-field" required value="{{values.email}}">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="mb-2 text-sm">Phone</label>
+                <input type="tel" id="phone" name="phone" class="input-field" required value="{{values.phone}}">
+            </div>
+            <div class="form-group">
+                <label for="password" class="mb-2 text-sm">Password</label>
+                <input type="password" id="password" name="password" class="input-field" required minlength="8">
+            </div>
+
+            <button type="submit" class="btn btn-teal">
+                Register
+            </button>
+        </form>
+    </div>
+</div>
