@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 
 let client = null;
 
-async function main() {
+async function connectDB() {
     if (!client) {
         const uri = "mongodb+srv://abdullah123bin_db_user:wNH8rIzb034KqXxN@cluster0.g2cako5.mongodb.net";
         client = new MongoClient(uri);
@@ -19,4 +19,9 @@ async function main() {
             await client.close();
         }
     }
+}
+
+async function Login(username, password) {
+    const user = await Users.findOne({ Username: username, Password: password });
+    return user;
 }
