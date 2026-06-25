@@ -55,7 +55,7 @@ async function findUserById(userId) {
 
 async function Authenticate(email, password) {
     const { Users } = collections();
-    return Users.findOne({ email, password: password });
+    return Users.findOne({ email: email, password: password });
 }
 // ---- Cats ----
 
@@ -176,4 +176,5 @@ export {
     getEmergencyEventsByCat,
     assignGuardianToEvent,
     updateEmergencyEventStatus,
+    Authenticate
 };

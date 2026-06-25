@@ -1,10 +1,10 @@
-import { Login } from "./business.js";
+import { Authenticate } from "./business.js";
 
 
-async function Login(username, password) {
-    return await Login(username, password);
+async function Authenticate(username, password) {
+    return await Authenticate(username, password);
 }
 
 module.exports = {
-    Login
+    Authenticate
 };
