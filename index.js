@@ -12,29 +12,9 @@ app.set("views", "./views");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(async (req, res, next) => {
-    const pages = ["/", "/register", "/login", "/scan", "/scan/:eventId"];
-    if (pages.includes(req.url)) {
-        next();
-    }
-    const session = false;
-    if (true) {
-        const c = req.headers.cookie.session
-        console.log(c.split("="));
-    }
-    if (session) {
-        const valid = await checkSessionMiddleware(session);
-        if (valid) {
-            next();
-        } else {
-            res.redirect("/");
-        }
-    }
-});
-
 
 app.get("/register", (req, res) => {
-    res.render("register", { title: "Register" });
+    res.render("register", { title: "Regsister" });
 });
 
 app.get("/login", (req, res) => {
