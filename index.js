@@ -25,6 +25,11 @@ app.get("/emergency", (req, res) => {
     res.redirect("/scan");
 });
 
+app.get("/logout", (req, res) => {
+    res.clearCookie("session");
+    res.redirect("/");
+});
+
 app.post("/register", async (req, res) => {
     const { name, email, phone, password } = req.body;
     try {
