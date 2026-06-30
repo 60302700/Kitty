@@ -1,6 +1,5 @@
-import express, { Router } from "express";
-import { logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware } from "./presentation.js";
-import { connectDB } from "./persistance.js";
+import express from "express";
+import { connectDB, logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware } from "./presentation.js";
 
 const app = express();
 
@@ -142,7 +141,7 @@ app.get("/homepage", requireAuth, async (req, res) => {
 // ── Logout ─────────────────────────────────────────────────────────────────
 app.get("/logout", async (req, res) => {
     res.clearCookie("session");
-    console.log(await logoutUser(getSessionCookie(req)))
+    await logoutUser(getSessionCookie(req));
     res.redirect("/");
 });
 // ───────────────────────────────────────────────────────────────────────────

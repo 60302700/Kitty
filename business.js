@@ -1,4 +1,5 @@
 import {
+    connectDB,
     Authenticate,
     createUser,
     findUserByEmail,
@@ -9,7 +10,6 @@ import {
     getGuardiansByOwner,
     assignGuardianToEvent,
     createSession,
-    getSession,
     deleteSession,
     getSessionBySessionId
 } from "./persistance.js";
@@ -17,7 +17,6 @@ import bcrypt from "bcryptjs";
 
 async function login(email, password) {
     const result = await Authenticate(email, password);
-    console.log(`result: ${result}`);
     if (result) {
         return await createSession(email);
     } else {
@@ -69,4 +68,4 @@ async function logout(sessionId) {
     return await deleteSession(sessionId);
 }
 
-export { logout, login, registerUser, handleScan, getEmergencyView, claimGuardian, getSession, checkSession };
+export { connectDB, logout, login, registerUser, handleScan, getEmergencyView, claimGuardian, checkSession };
