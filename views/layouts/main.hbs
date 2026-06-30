@@ -466,17 +466,36 @@
             position: fixed;
             bottom: 0;
             right: 2.5rem;
-            width: 120px;
+            width: 160px;
+            height: 119px;    /* clips at toe level so paws rest on screen edge */
+            overflow: hidden;
             pointer-events: none;
             z-index: 500;
-            animation: peek-bob 3s ease-in-out infinite;
-            transform-origin: bottom center;
         }
 
-        @keyframes peek-bob {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-6px); }
+        .peeking-cat svg {
+            display: block;
+            width: 160px;
         }
+
+
+        /* Orange upside-down cat peeking from header */
+        .peeking-cat-top {
+            position: fixed;
+            top: 47px;
+            left: 2.5rem;
+            width: 160px;
+            height: 110px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        .peeking-cat-top svg {
+            display: block;
+            width: 160px;
+        }
+
     </style>
 </head>
 
@@ -516,19 +535,64 @@
         {{{body}}}
     </div>
 
+    <!-- Orange upside-down cat peeking from header -->
+    <div class="peeking-cat-top" aria-hidden="true">
+        <!--
+            Flipped design: paws at top (y=11-28), head in middle (center y=38),
+            ears pointing down (y=58-82). Container clips at 110px, hiding ear tips.
+            Navbar z-index:1000 hides the cat when it floats up behind it.
+        -->
+        <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left paw (gripping header bottom) -->
+            <ellipse cx="14"  cy="18" rx="14" ry="10" fill="#ea580c"/>
+            <ellipse cx="6"   cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <ellipse cx="14"  cy="11" rx="5"  ry="4"  fill="#c2410c"/>
+            <ellipse cx="22"  cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <!-- Right paw -->
+            <ellipse cx="106" cy="18" rx="14" ry="10" fill="#ea580c"/>
+            <ellipse cx="98"  cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <ellipse cx="106" cy="11" rx="5"  ry="4"  fill="#c2410c"/>
+            <ellipse cx="114" cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <!-- Head -->
+            <ellipse cx="60" cy="38" rx="38" ry="34" fill="#ea580c"/>
+            <!-- Left ear pointing down -->
+            <polygon points="28,58 18,82 42,64" fill="#ea580c"/>
+            <polygon points="30,60 22,78 40,64" fill="#fb923c"/>
+            <!-- Right ear pointing down -->
+            <polygon points="92,58 102,82 78,64" fill="#ea580c"/>
+            <polygon points="90,60 98,78 80,64" fill="#fb923c"/>
+            <!-- Left eye -->
+            <circle cx="44" cy="38" r="11" fill="#f5c842"/>
+            <circle cx="44" cy="38" r="6"  fill="#111"/>
+            <circle cx="41" cy="35" r="2.5" fill="white"/>
+            <!-- Right eye -->
+            <circle cx="76" cy="38" r="11" fill="#f5c842"/>
+            <circle cx="76" cy="38" r="6"  fill="#111"/>
+            <circle cx="73" cy="35" r="2.5" fill="white"/>
+            <!-- Nose -->
+            <ellipse cx="60" cy="26" rx="4" ry="3" fill="#e8a0b0"/>
+            <!-- Whiskers left -->
+            <line x1="24" y1="29" x2="52" y2="26" stroke="#aaa" stroke-width="1"/>
+            <line x1="22" y1="24" x2="52" y2="24" stroke="#aaa" stroke-width="1"/>
+            <!-- Whiskers right -->
+            <line x1="96" y1="29" x2="68" y2="26" stroke="#aaa" stroke-width="1"/>
+            <line x1="98" y1="24" x2="68" y2="24" stroke="#aaa" stroke-width="1"/>
+        </svg>
+    </div>
+
     <!-- Peeking cat decoration -->
     <div class="peeking-cat" aria-hidden="true">
-        <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
             <!-- Left paw -->
-            <ellipse cx="20" cy="88" rx="14" ry="10" fill="#1a1a1a"/>
-            <ellipse cx="12" cy="92" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="20" cy="95" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="28" cy="92" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="14" cy="82" rx="14" ry="10" fill="#1a1a1a"/>
+            <ellipse cx="6" cy="86" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="14" cy="89" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="22" cy="86" rx="5" ry="4" fill="#222"/>
             <!-- Right paw -->
-            <ellipse cx="100" cy="88" rx="14" ry="10" fill="#1a1a1a"/>
-            <ellipse cx="92" cy="92" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="100" cy="95" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="108" cy="92" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="106" cy="82" rx="14" ry="10" fill="#1a1a1a"/>
+            <ellipse cx="98" cy="86" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="106" cy="89" rx="5" ry="4" fill="#222"/>
+            <ellipse cx="114" cy="86" rx="5" ry="4" fill="#222"/>
             <!-- Head -->
             <ellipse cx="60" cy="62" rx="38" ry="34" fill="#1a1a1a"/>
             <!-- Left ear -->
@@ -553,6 +617,8 @@
             <!-- Whiskers right -->
             <line x1="96" y1="71" x2="68" y2="74" stroke="#888" stroke-width="1"/>
             <line x1="98" y1="76" x2="68" y2="76" stroke="#888" stroke-width="1"/>
+            <!-- Body -->
+            <ellipse cx="60" cy="118" rx="32" ry="22" fill="#1a1a1a"/>
         </svg>
     </div>
 </body>

@@ -46,8 +46,9 @@ async function requireAuth(req, res, next) {
 }
 // ───────────────────────────────────────────────────────────────────────────
 
-app.get("/register", requireAuth, (req, res) => {
-    res.render("register", { title: "Register", isLoggedIn: Loggedin(req) });
+app.get("/register", async (req, res) => {
+    const isLoggedIn = await Loggedin(req);
+    res.render("register", { title: "Register", isLoggedIn });
 });
 
 app.get("/login", async (req, res) => {
@@ -136,7 +137,7 @@ app.post("/scan/:eventId/claim", requireAuth, async (req, res) => {
 
 app.get("/homepage", requireAuth, async (req, res) => {
     const isLoggedIn = await Loggedin(req);
-    res.render("t", { title: "MeoW Safety Gateway", isLoggedIn: isLoggedIn });
+    res.render("scan", { title: "MeoW Safety Gateway", isLoggedIn });
 });
 // ── Logout ─────────────────────────────────────────────────────────────────
 app.get("/logout", async (req, res) => {
