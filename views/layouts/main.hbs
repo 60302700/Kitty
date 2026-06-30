@@ -1150,46 +1150,107 @@
 
     <!-- Orange upside-down cat peeking from header -->
     <div class="peeking-cat-top" aria-hidden="true">
-        <!--
-            Flipped design: paws at top (y=11-28), head in middle (center y=38),
-            ears pointing down (y=58-82). Container clips at 110px, hiding ear tips.
-            Navbar z-index:1000 hides the cat when it floats up behind it.
-        -->
         <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
-            <!-- Left paw (gripping header bottom) -->
-            <ellipse cx="14"  cy="18" rx="14" ry="10" fill="#ea580c"/>
-            <ellipse cx="6"   cy="14" rx="5"  ry="4"  fill="#c2410c"/>
-            <ellipse cx="14"  cy="11" rx="5"  ry="4"  fill="#c2410c"/>
-            <ellipse cx="22"  cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <defs>
+                <radialGradient id="oHeadG" cx="38%" cy="32%" r="62%">
+                    <stop offset="0%"   stop-color="#ff8c42"/>
+                    <stop offset="50%"  stop-color="#ea580c"/>
+                    <stop offset="100%" stop-color="#7c2200"/>
+                </radialGradient>
+                <radialGradient id="oPawG" cx="50%" cy="30%" r="65%">
+                    <stop offset="0%"   stop-color="#fb923c"/>
+                    <stop offset="100%" stop-color="#9a3400"/>
+                </radialGradient>
+                <radialGradient id="oEyeGL" cx="35%" cy="30%" r="70%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#ffe566"/>
+                    <stop offset="45%"  stop-color="#f0a000"/>
+                    <stop offset="85%"  stop-color="#b05800"/>
+                    <stop offset="100%" stop-color="#6a3000"/>
+                </radialGradient>
+                <radialGradient id="oEyeGR" cx="35%" cy="30%" r="70%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#ffe566"/>
+                    <stop offset="45%"  stop-color="#f0a000"/>
+                    <stop offset="85%"  stop-color="#b05800"/>
+                    <stop offset="100%" stop-color="#6a3000"/>
+                </radialGradient>
+                <filter id="oShadow" x="-15%" y="-15%" width="130%" height="130%">
+                    <feDropShadow dx="1" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+                </filter>
+            </defs>
+
+            <!-- Left paw -->
+            <ellipse cx="14" cy="18" rx="14" ry="9" fill="url(#oPawG)"/>
+            <ellipse cx="6"  cy="23" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="14" cy="26" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="22" cy="23" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="7"  cy="15" rx="2.5" ry="1.8" fill="#5a1800" opacity="0.55"/>
+            <ellipse cx="14" cy="13" rx="3"   ry="2"   fill="#5a1800" opacity="0.55"/>
+            <ellipse cx="21" cy="15" rx="2.5" ry="1.8" fill="#5a1800" opacity="0.55"/>
+
             <!-- Right paw -->
-            <ellipse cx="106" cy="18" rx="14" ry="10" fill="#ea580c"/>
-            <ellipse cx="98"  cy="14" rx="5"  ry="4"  fill="#c2410c"/>
-            <ellipse cx="106" cy="11" rx="5"  ry="4"  fill="#c2410c"/>
-            <ellipse cx="114" cy="14" rx="5"  ry="4"  fill="#c2410c"/>
+            <ellipse cx="106" cy="18" rx="14" ry="9" fill="url(#oPawG)"/>
+            <ellipse cx="98"  cy="23" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="106" cy="26" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="114" cy="23" rx="4.5" ry="3.2" fill="#7c2200"/>
+            <ellipse cx="99"  cy="15" rx="2.5" ry="1.8" fill="#5a1800" opacity="0.55"/>
+            <ellipse cx="106" cy="13" rx="3"   ry="2"   fill="#5a1800" opacity="0.55"/>
+            <ellipse cx="113" cy="15" rx="2.5" ry="1.8" fill="#5a1800" opacity="0.55"/>
+
             <!-- Head -->
-            <ellipse cx="60" cy="38" rx="38" ry="34" fill="#ea580c"/>
-            <!-- Left ear pointing down -->
-            <polygon points="28,58 18,82 42,64" fill="#ea580c"/>
-            <polygon points="30,60 22,78 40,64" fill="#fb923c"/>
-            <!-- Right ear pointing down -->
-            <polygon points="92,58 102,82 78,64" fill="#ea580c"/>
-            <polygon points="90,60 98,78 80,64" fill="#fb923c"/>
+            <ellipse cx="60" cy="38" rx="38" ry="34" fill="url(#oHeadG)" filter="url(#oShadow)"/>
+
+            <!-- Tabby stripes on forehead -->
+            <path d="M50,18 Q55,14 60,18" stroke="#b84000" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M60,17 Q65,13 70,17" stroke="#b84000" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M44,21 Q48,17 52,21" stroke="#b84000" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+            <!-- Left ear (pointing down — cat is upside down) -->
+            <polygon points="28,58 18,82 42,64" fill="#b84000"/>
+            <polygon points="30,59 22,78 40,64" fill="#ea6820"/>
+            <polygon points="31,61 26,74 39,64" fill="#f0a080" opacity="0.45"/>
+
+            <!-- Right ear -->
+            <polygon points="92,58 102,82 78,64" fill="#b84000"/>
+            <polygon points="90,59 98,78 80,64" fill="#ea6820"/>
+            <polygon points="89,61 94,74 81,64" fill="#f0a080" opacity="0.45"/>
+
+            <!-- Muzzle highlight -->
+            <ellipse cx="60" cy="31" rx="15" ry="9" fill="#f07030" opacity="0.4"/>
+
             <!-- Left eye -->
-            <circle cx="44" cy="38" r="11" fill="#f5c842"/>
-            <circle cx="44" cy="38" r="6"  fill="#111" class="cat-eye-blink"/>
-            <circle cx="41" cy="35" r="2.5" fill="white"/>
+            <circle cx="44" cy="38" r="11.5" fill="url(#oEyeGL)" class="cat-eye-blink"/>
+            <ellipse cx="44" cy="38" rx="3"   ry="7.5" fill="#0a0808"/>
+            <circle  cx="44" cy="38" r="11.5" fill="none" stroke="#7a4000" stroke-width="0.8"/>
+            <circle  cx="40.5" cy="34.5" r="2.3" fill="white" opacity="0.88"/>
+            <circle  cx="46"   cy="42"   r="0.9" fill="white" opacity="0.5"/>
+
             <!-- Right eye -->
-            <circle cx="76" cy="38" r="11" fill="#f5c842"/>
-            <circle cx="76" cy="38" r="6"  fill="#111" class="cat-eye-blink"/>
-            <circle cx="73" cy="35" r="2.5" fill="white"/>
+            <circle cx="76" cy="38" r="11.5" fill="url(#oEyeGR)" class="cat-eye-blink"/>
+            <ellipse cx="76" cy="38" rx="3"   ry="7.5" fill="#0a0808"/>
+            <circle  cx="76" cy="38" r="11.5" fill="none" stroke="#7a4000" stroke-width="0.8"/>
+            <circle  cx="72.5" cy="34.5" r="2.3" fill="white" opacity="0.88"/>
+            <circle  cx="78"   cy="42"   r="0.9" fill="white" opacity="0.5"/>
+
             <!-- Nose -->
-            <ellipse cx="60" cy="26" rx="4" ry="3" fill="#e8a0b0"/>
+            <path d="M57,28 L60,25.5 L63,28 Q60,31 57,28Z" fill="#c05870"/>
+            <path d="M58.5,28 L60,26.5 L61.5,28" fill="#e07090" opacity="0.6"/>
+
+            <!-- Mouth -->
+            <path d="M60,30 Q55.5,34.5 52,33" stroke="#7a2000" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M60,30 Q64.5,34.5 68,33" stroke="#7a2000" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
             <!-- Whiskers left -->
-            <line x1="24" y1="29" x2="52" y2="26" stroke="#aaa" stroke-width="1"/>
-            <line x1="22" y1="24" x2="52" y2="24" stroke="#aaa" stroke-width="1"/>
+            <line x1="18" y1="27" x2="52" y2="29" stroke="#fff8e0" stroke-width="0.8" opacity="0.85"/>
+            <line x1="16" y1="31" x2="52" y2="31" stroke="#fff8e0" stroke-width="0.8" opacity="0.85"/>
+            <line x1="18" y1="35" x2="52" y2="33" stroke="#fff8e0" stroke-width="0.8" opacity="0.75"/>
             <!-- Whiskers right -->
-            <line x1="96" y1="29" x2="68" y2="26" stroke="#aaa" stroke-width="1"/>
-            <line x1="98" y1="24" x2="68" y2="24" stroke="#aaa" stroke-width="1"/>
+            <line x1="102" y1="27" x2="68" y2="29" stroke="#fff8e0" stroke-width="0.8" opacity="0.85"/>
+            <line x1="104" y1="31" x2="68" y2="31" stroke="#fff8e0" stroke-width="0.8" opacity="0.85"/>
+            <line x1="102" y1="35" x2="68" y2="33" stroke="#fff8e0" stroke-width="0.8" opacity="0.75"/>
+
+            <!-- Brow dots -->
+            <circle cx="36" cy="27" r="1.4" fill="#8a3000" opacity="0.7"/>
+            <circle cx="84" cy="27" r="1.4" fill="#8a3000" opacity="0.7"/>
         </svg>
     </div>
 
@@ -1198,42 +1259,111 @@
     <!-- Peeking cat decoration -->
     <div class="peeking-cat" aria-hidden="true">
         <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
-            <!-- Left paw -->
-            <ellipse cx="14" cy="82" rx="14" ry="10" fill="#1a1a1a"/>
-            <ellipse cx="6" cy="86" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="14" cy="89" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="22" cy="86" rx="5" ry="4" fill="#222"/>
-            <!-- Right paw -->
-            <ellipse cx="106" cy="82" rx="14" ry="10" fill="#1a1a1a"/>
-            <ellipse cx="98" cy="86" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="106" cy="89" rx="5" ry="4" fill="#222"/>
-            <ellipse cx="114" cy="86" rx="5" ry="4" fill="#222"/>
-            <!-- Head -->
-            <ellipse cx="60" cy="62" rx="38" ry="34" fill="#1a1a1a"/>
-            <!-- Left ear -->
-            <polygon points="28,42 18,18 42,36" fill="#1a1a1a"/>
-            <polygon points="30,40 22,22 40,36" fill="#2d2d2d"/>
-            <!-- Right ear -->
-            <polygon points="92,42 102,18 78,36" fill="#1a1a1a"/>
-            <polygon points="90,40 98,22 80,36" fill="#2d2d2d"/>
-            <!-- Left eye -->
-            <circle cx="44" cy="62" r="11" fill="#f5c842"/>
-            <circle cx="44" cy="62" r="6" fill="#111" class="cat-eye-blink"/>
-            <circle cx="41" cy="59" r="2.5" fill="white"/>
-            <!-- Right eye -->
-            <circle cx="76" cy="62" r="11" fill="#f5c842"/>
-            <circle cx="76" cy="62" r="6" fill="#111" class="cat-eye-blink"/>
-            <circle cx="73" cy="59" r="2.5" fill="white"/>
-            <!-- Nose -->
-            <ellipse cx="60" cy="74" rx="4" ry="3" fill="#e8a0b0"/>
-            <!-- Whiskers left -->
-            <line x1="24" y1="71" x2="52" y2="74" stroke="#888" stroke-width="1"/>
-            <line x1="22" y1="76" x2="52" y2="76" stroke="#888" stroke-width="1"/>
-            <!-- Whiskers right -->
-            <line x1="96" y1="71" x2="68" y2="74" stroke="#888" stroke-width="1"/>
-            <line x1="98" y1="76" x2="68" y2="76" stroke="#888" stroke-width="1"/>
+            <defs>
+                <radialGradient id="bHeadG" cx="38%" cy="32%" r="62%">
+                    <stop offset="0%"   stop-color="#3c3c3c"/>
+                    <stop offset="50%"  stop-color="#1a1a1a"/>
+                    <stop offset="100%" stop-color="#060606"/>
+                </radialGradient>
+                <radialGradient id="bBodyG" cx="42%" cy="28%" r="65%">
+                    <stop offset="0%"   stop-color="#2a2a2a"/>
+                    <stop offset="100%" stop-color="#080808"/>
+                </radialGradient>
+                <radialGradient id="bPawG" cx="50%" cy="30%" r="65%">
+                    <stop offset="0%"   stop-color="#2e2e2e"/>
+                    <stop offset="100%" stop-color="#0a0a0a"/>
+                </radialGradient>
+                <radialGradient id="bEyeGL" cx="35%" cy="30%" r="70%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#ffe566"/>
+                    <stop offset="40%"  stop-color="#f0a000"/>
+                    <stop offset="82%"  stop-color="#b05800"/>
+                    <stop offset="100%" stop-color="#6a3000"/>
+                </radialGradient>
+                <radialGradient id="bEyeGR" cx="35%" cy="30%" r="70%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#ffe566"/>
+                    <stop offset="40%"  stop-color="#f0a000"/>
+                    <stop offset="82%"  stop-color="#b05800"/>
+                    <stop offset="100%" stop-color="#6a3000"/>
+                </radialGradient>
+                <filter id="bShadow" x="-15%" y="-15%" width="130%" height="130%">
+                    <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+
             <!-- Body -->
-            <ellipse cx="60" cy="118" rx="32" ry="22" fill="#1a1a1a"/>
+            <ellipse cx="60" cy="118" rx="32" ry="22" fill="url(#bBodyG)"/>
+
+            <!-- Left paw -->
+            <ellipse cx="14" cy="82" rx="14" ry="9" fill="url(#bPawG)"/>
+            <ellipse cx="6"  cy="77" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="14" cy="74" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="22" cy="77" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="7"  cy="84" rx="2.5" ry="1.8" fill="#201020" opacity="0.6"/>
+            <ellipse cx="14" cy="86" rx="3"   ry="2"   fill="#201020" opacity="0.6"/>
+            <ellipse cx="21" cy="84" rx="2.5" ry="1.8" fill="#201020" opacity="0.6"/>
+
+            <!-- Right paw -->
+            <ellipse cx="106" cy="82" rx="14" ry="9" fill="url(#bPawG)"/>
+            <ellipse cx="98"  cy="77" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="106" cy="74" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="114" cy="77" rx="4.5" ry="3.2" fill="#111"/>
+            <ellipse cx="99"  cy="84" rx="2.5" ry="1.8" fill="#201020" opacity="0.6"/>
+            <ellipse cx="106" cy="86" rx="3"   ry="2"   fill="#201020" opacity="0.6"/>
+            <ellipse cx="113" cy="84" rx="2.5" ry="1.8" fill="#201020" opacity="0.6"/>
+
+            <!-- Head -->
+            <ellipse cx="60" cy="62" rx="38" ry="34" fill="url(#bHeadG)" filter="url(#bShadow)"/>
+
+            <!-- Fur highlight sheen (light source upper-left) -->
+            <ellipse cx="46" cy="48" rx="14" ry="10" fill="#2e2e2e" opacity="0.5"/>
+
+            <!-- Left ear -->
+            <polygon points="28,42 18,18 42,36" fill="#0e0e0e"/>
+            <polygon points="30,40 23,22 40,36" fill="#1e1e1e"/>
+            <polygon points="31,39 26,25 39,36" fill="#3a1a22" opacity="0.5"/>
+
+            <!-- Right ear -->
+            <polygon points="92,42 102,18 78,36" fill="#0e0e0e"/>
+            <polygon points="90,40 97,22 80,36" fill="#1e1e1e"/>
+            <polygon points="89,39 94,25 81,36" fill="#3a1a22" opacity="0.5"/>
+
+            <!-- Muzzle highlight -->
+            <ellipse cx="60" cy="72" rx="15" ry="9" fill="#242424" opacity="0.7"/>
+
+            <!-- Left eye -->
+            <circle cx="44" cy="62" r="11.5" fill="url(#bEyeGL)" class="cat-eye-blink"/>
+            <ellipse cx="44" cy="62" rx="3"   ry="7.5" fill="#060606"/>
+            <circle  cx="44" cy="62" r="11.5" fill="none" stroke="#7a4000" stroke-width="0.8"/>
+            <circle  cx="40.5" cy="58.5" r="2.3" fill="white" opacity="0.9"/>
+            <circle  cx="46"   cy="66"   r="0.9" fill="white" opacity="0.5"/>
+
+            <!-- Right eye -->
+            <circle cx="76" cy="62" r="11.5" fill="url(#bEyeGR)" class="cat-eye-blink"/>
+            <ellipse cx="76" cy="62" rx="3"   ry="7.5" fill="#060606"/>
+            <circle  cx="76" cy="62" r="11.5" fill="none" stroke="#7a4000" stroke-width="0.8"/>
+            <circle  cx="72.5" cy="58.5" r="2.3" fill="white" opacity="0.9"/>
+            <circle  cx="78"   cy="66"   r="0.9" fill="white" opacity="0.5"/>
+
+            <!-- Nose -->
+            <path d="M57,72 L60,69.5 L63,72 Q60,75 57,72Z" fill="#c05870"/>
+            <path d="M58.5,72 L60,70.5 L61.5,72" fill="#e07090" opacity="0.6"/>
+
+            <!-- Mouth -->
+            <path d="M60,74 Q55.5,78.5 52,77" stroke="#1a0a0a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M60,74 Q64.5,78.5 68,77" stroke="#1a0a0a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+            <!-- Whiskers left -->
+            <line x1="18" y1="69" x2="52" y2="72" stroke="#aaa" stroke-width="0.8" opacity="0.85"/>
+            <line x1="16" y1="73" x2="52" y2="73" stroke="#aaa" stroke-width="0.8" opacity="0.85"/>
+            <line x1="18" y1="77" x2="52" y2="75" stroke="#aaa" stroke-width="0.8" opacity="0.75"/>
+            <!-- Whiskers right -->
+            <line x1="102" y1="69" x2="68" y2="72" stroke="#aaa" stroke-width="0.8" opacity="0.85"/>
+            <line x1="104" y1="73" x2="68" y2="73" stroke="#aaa" stroke-width="0.8" opacity="0.85"/>
+            <line x1="102" y1="77" x2="68" y2="75" stroke="#aaa" stroke-width="0.8" opacity="0.75"/>
+
+            <!-- Brow dots -->
+            <circle cx="36" cy="52" r="1.4" fill="#555" opacity="0.8"/>
+            <circle cx="84" cy="52" r="1.4" fill="#555" opacity="0.8"/>
         </svg>
     </div>
 </body>
