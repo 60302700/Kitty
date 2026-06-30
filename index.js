@@ -45,14 +45,9 @@ async function requireAuth(req, res, next) {
 }
 // ───────────────────────────────────────────────────────────────────────────
 
-<<<<<<< HEAD
-app.get("/register", (req, res) => {
-    res.render("register", { title: "Register", isLoggedIn: Loggedin(req) });
-=======
 app.get("/register", async (req, res) => {
     const isLoggedIn = await Loggedin(req);
     res.render("register", { title: "Register", isLoggedIn });
->>>>>>> d56fca506b11a28a6212da18be2b5e2972b6f6ce
 });
 
 app.get("/login", async (req, res) => {
