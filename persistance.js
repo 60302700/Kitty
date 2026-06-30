@@ -59,7 +59,6 @@ async function findUserById(userId) {
 async function Authenticate(email, password) {
     const { Users } = collections();
     const user = await Users.findOne({ email: email });
-    console.log(user)
     if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
         return false;
     }

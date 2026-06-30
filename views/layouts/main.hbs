@@ -16,7 +16,7 @@
         }
 
         body {
-            background-color: #f1f5f9;
+            background-color: #fff5f9;
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #0f172a;
             width: 100vw;
@@ -153,7 +153,7 @@
 
         /* Header Variations */
         .bg-slate-dark {
-            background-color: #1e293b;
+            background: linear-gradient(135deg, #9d174d 0%, #ec4899 60%, #f472b6 100%);
         }
 
         .bg-emergency-red {
@@ -194,9 +194,9 @@
 
         .input-field:focus {
             outline: none;
-            border-color: #0d9488;
+            border-color: #ec4899;
             /* Calm teal color boundary on focus */
-            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
         }
 
         /* Special styling wrapper for numeric codes/tokens */
@@ -233,11 +233,11 @@
 
         /* Button Variations */
         .btn-teal {
-            background-color: #0d9488;
+            background-color: #ec4899;
         }
 
         .btn-teal:hover {
-            background-color: #0f766e;
+            background-color: #be185d;
         }
 
         .btn-red {
@@ -317,13 +317,13 @@
         /* Global Navigation Header Bar (Spans full window width) */
         .global-navbar {
             width: 100%;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-bottom: 2px solid #0d9488;
+            background: linear-gradient(135deg, #9d174d 0%, #ec4899 60%, #f472b6 100%);
+            border-bottom: 2px solid #ec4899;
             padding: 0.85rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 20px -2px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 4px 20px -2px rgba(236, 72, 153, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -339,7 +339,7 @@
 
         .navbar-brand h3 a {
             text-decoration: none;
-            background: linear-gradient(to right, #38bdf8, #2dd4bf);
+            background: linear-gradient(to right, #ffffff, #fce7f3);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -370,7 +370,7 @@
         }
 
         .navbar-links a {
-            color: #94a3b8;
+            color: #fce7f3;
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 700;
@@ -382,7 +382,7 @@
         }
 
         .navbar-links a:hover {
-            color: #38bdf8;
+            color: #ffffff;
         }
 
         /* Nav link hover slide underline effect */
@@ -393,7 +393,7 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: #2dd4bf;
+            background-color: #ec4899;
             transition: width 0.3s ease;
         }
 
@@ -403,15 +403,24 @@
 
         /* Special style for Emergency link to add dynamic alert coloring */
         .navbar-links a.nav-emergency {
-            color: #f87171;
-            padding: 0.4rem 0.85rem;
-            border-radius: 0.5rem;
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            background-color: rgba(239, 68, 68, 0.08);
-            transition: all 0.3s ease;
+            color: #ffffff;
+            padding: 0.5rem 1.1rem;
+            border-radius: 0.6rem;
+            border: none;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6), 0 3px 12px rgba(220, 38, 38, 0.4);
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.3rem;
+            animation: emergencyNavPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes emergencyNavPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6), 0 3px 12px rgba(220, 38, 38, 0.35); }
+            50%       { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0), 0 3px 18px rgba(220, 38, 38, 0.55); }
         }
 
         .navbar-links a.nav-emergency::after {
@@ -419,10 +428,9 @@
         }
 
         .navbar-links a.nav-emergency:hover {
-            color: #ffffff;
-            background-color: #dc2626;
-            border-color: #dc2626;
-            box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+            transform: translateY(-2px) scale(1.04);
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0), 0 6px 20px rgba(220, 38, 38, 0.55);
         }
 
         /* ==========================================
@@ -458,17 +466,842 @@
             background-color: #fee2e2;
             border: 2px solid #ef4444;
         }
+
+        /* ==========================================
+   11. REGISTER PAGE — LAYOUT
+   ========================================== */
+        .register-wrapper {
+            width: 100%;
+            max-width: 1080px;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .register-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 820px) {
+            .register-layout { grid-template-columns: 1fr; }
+            .register-preview-panel { order: -1; }
+        }
+
+        /* ==========================================
+   12. GLASSMORPHISM CARD
+   ========================================== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(236, 72, 153, 0.14);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.08), 0 4px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ==========================================
+   13. PAW PROGRESS INDICATOR
+   ========================================== */
+        .paw-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .paw-step-dot {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.35s, color 0.35s, box-shadow 0.35s;
+        }
+
+        .paw-step-dot svg { width: 1.1rem; height: 1.1rem; }
+
+        .paw-step-dot.active {
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            color: white;
+            box-shadow: 0 0 18px rgba(236, 72, 153, 0.45);
+        }
+
+        .paw-progress-line {
+            flex: 1;
+            max-width: 4rem;
+            height: 2px;
+            background: #e2e8f0;
+            transition: background 0.35s;
+        }
+
+        .paw-progress-line.filled {
+            background: linear-gradient(to right, #ec4899, #a855f7);
+        }
+
+        /* ==========================================
+   14. MULTI-STEP FORM
+   ========================================== */
+        .form-step {
+            display: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-step.active { display: block; }
+
+        .step-header { margin-bottom: 1.5rem; }
+
+        .step-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-sub {
+            color: #64748b;
+            font-size: 0.88rem;
+        }
+
+        .field-group { margin-bottom: 0.5rem; }
+
+        /* ==========================================
+   15. FLOATING LABEL INPUTS
+   ========================================== */
+        .floating-field {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+
+        .fancy-input {
+            width: 100%;
+            padding: 1.1rem 1rem 0.55rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.85rem;
+            font-size: 1rem;
+            background: #fff;
+            color: #0f172a;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+            box-sizing: border-box;
+        }
+
+        .fancy-input:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.12);
+            transform: scale(1.01);
+        }
+
+        .floating-field label {
+            position: absolute;
+            left: 1rem;
+            top: 0.9rem;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+
+        .fancy-input:focus + label,
+        .fancy-input:not(:placeholder-shown) + label {
+            top: 0.25rem;
+            font-size: 0.7rem;
+            color: #ec4899;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px) scale(1.01); }
+            40%, 80% { transform: translateX(6px) scale(1.01); }
+        }
+
+        .fancy-input.shake { border-color: #ef4444; animation: shake 0.4s ease; }
+
+        /* ==========================================
+   16. STEP NAVIGATION BUTTONS
+   ========================================== */
+        .btn-step-next {
+            width: 100%;
+            padding: 0.95rem;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            color: #fff;
+            border: none;
+            border-radius: 0.85rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+            box-shadow: 0 4px 18px rgba(236, 72, 153, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-step-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(236, 72, 153, 0.42);
+        }
+
+        .btn-step-next:active { transform: scale(0.97); }
+
+        .btn-step-back {
+            padding: 0.95rem 1.4rem;
+            background: transparent;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-step-back:hover { border-color: #ec4899; color: #ec4899; }
+
+        .btn-row { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+        .btn-row .btn-step-next { flex: 1; margin-top: 0; }
+
+        .btn-activate {
+            flex: 1;
+            padding: 0.95rem;
+            background: linear-gradient(135deg, #9d174d, #ec4899, #a855f7);
+            color: #fff;
+            border: none;
+            border-radius: 0.85rem;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 22px rgba(236, 72, 153, 0.38);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-activate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.52);
+        }
+
+        .btn-arrow { display: inline-block; transition: transform 0.2s; }
+        .btn-step-next:hover .btn-arrow { transform: translateX(4px); }
+
+        /* ==========================================
+   17. REVIEW SUMMARY
+   ========================================== */
+        .review-list {
+            background: #fdf2f8;
+            border: 1px solid rgba(236, 72, 153, 0.14);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .review-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.08);
+            font-size: 0.875rem;
+            gap: 1rem;
+        }
+
+        .review-row:last-child { border-bottom: none; }
+        .review-key { color: #64748b; font-weight: 500; }
+        .review-val { color: #0f172a; font-weight: 700; word-break: break-all; }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.25rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .login-link a { color: #ec4899; font-weight: 600; text-decoration: none; }
+        .login-link a:hover { text-decoration: underline; }
+
+        .inline-error {
+            background: #fff1f2;
+            border-left: 4px solid #ef4444;
+            color: #b91c1c;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        /* ==========================================
+   18. EMERGENCY CARD PREVIEW
+   ========================================== */
+        .register-preview-panel { position: sticky; top: 90px; }
+
+        .preview-label {
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
+        .ec-card {
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(236, 72, 153, 0.14);
+            background: white;
+            transform: perspective(900px) rotateY(-4deg) rotateX(2deg);
+            transition: transform 0.4s ease;
+        }
+
+        .ec-card:hover {
+            transform: perspective(900px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .ec-card-header {
+            background: linear-gradient(135deg, #9d174d 0%, #ec4899 60%, #f472b6 100%);
+            padding: 1.1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ec-logo-text {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        .ec-paw {
+            display: inline-block;
+            width: 1.05em;
+            height: 1.05em;
+            vertical-align: -0.15em;
+        }
+
+        .ec-badge {
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.22rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ec-card-body {
+            padding: 1.25rem 1.4rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .ec-qr-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .ec-qr-box {
+            border: 2px solid #1e293b;
+            border-radius: 4px;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .qr-label {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .ec-info-col { flex: 1; min-width: 0; }
+        .ec-cat-emoji { font-size: 1.75rem; margin-bottom: 0.2rem; }
+
+        .ec-cat-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .ec-field {
+            font-size: 0.78rem;
+            color: #475569;
+            margin-bottom: 0.25rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: color 0.25s;
+        }
+
+        .ec-field.updated { color: #ec4899; }
+
+        .ec-card-footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 0.65rem 1.4rem;
+            font-size: 0.68rem;
+            color: #94a3b8;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .preview-note {
+            text-align: center;
+            font-size: 0.73rem;
+            color: #94a3b8;
+            margin-top: 0.75rem;
+        }
+
+        /* ==========================================
+   19. FLOATING BACKGROUND ELEMENTS
+   ========================================== */
+        .bg-floats {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-el {
+            position: absolute;
+            opacity: 0.15;
+            animation: gentleFloat 9s ease-in-out infinite;
+            user-select: none;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33%       { transform: translateY(-18px) rotate(8deg); }
+            66%       { transform: translateY(-8px) rotate(-6deg); }
+        }
+
+        .main-content { position: relative; z-index: 1; }
+
+        /* ==========================================
+   20. TOAST NOTIFICATIONS
+   ========================================== */
+        .toast {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(5rem);
+            background: white;
+            border-radius: 0.85rem;
+            padding: 0.9rem 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+            z-index: 9999;
+            border-left: 4px solid #ec4899;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.toast-error { border-left-color: #ef4444; color: #b91c1c; }
+
+        /* ==========================================
+   21. SUCCESS OVERLAY
+   ========================================== */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .success-overlay.active { opacity: 1; pointer-events: all; }
+
+        .success-box {
+            background: white;
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 420px;
+            width: 90%;
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.75); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
+        }
+
+        .success-cat-emoji {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            animation: bounceIn 0.6s ease 0.2s both;
+        }
+
+        @keyframes bounceIn {
+            0%   { transform: translateY(-24px); opacity: 0; }
+            60%  { transform: translateY(6px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .success-check {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 28px rgba(236, 72, 153, 0.45);
+        }
+
+        .success-box h2 {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+        }
+
+        .success-box p { color: #64748b; margin-bottom: 2rem; }
+
+        .paw-confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti-paw {
+            position: absolute;
+            top: -2rem;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            to { transform: translateY(120%); opacity: 0; }
+        }
+
+        .btn-go-login {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            border-radius: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 18px rgba(236, 72, 153, 0.32);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-go-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(236, 72, 153, 0.44);
+        }
+
+        /* ==========================================
+   22. PAW CURSOR TRAIL
+   ========================================== */
+        .cursor-paw {
+            position: fixed;
+            width: 1.4rem;
+            height: 1.4rem;
+            pointer-events: none;
+            z-index: 9997;
+            animation: pawFade 0.85s ease forwards;
+        }
+
+        @keyframes pawFade {
+            0%   { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0;   transform: translate(-50%, -50%) scale(0.4); }
+        }
+
+        /* ==========================================
+   23. CAT BLINKING & ANIMATIONS
+   ========================================== */
+        .cat-eye-blink {
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+        .peeking-cat .cat-eye-blink {
+            animation: catBlink 5s ease-in-out 1s infinite;
+        }
+        .peeking-cat-top .cat-eye-blink {
+            animation: catBlink 6s ease-in-out 3s infinite;
+        }
+        @keyframes catBlink {
+            0%, 86%, 100% { transform: scaleY(1); }
+            90%           { transform: scaleY(0.05); }
+        }
+
+        /* Ear twitch */
+        .o-ear-l, .o-ear-r, .b-ear-l, .b-ear-r {
+            transform-box: fill-box;
+            transform-origin: bottom center;
+        }
+        @keyframes earTwitch {
+            0%, 87%, 100% { transform: rotate(0deg); }
+            91%           { transform: rotate(-10deg); }
+            95%           { transform: rotate(6deg); }
+        }
+        .o-ear-l { animation: earTwitch 8s ease-in-out 1s infinite; }
+        .o-ear-r { animation: earTwitch 8s ease-in-out 2.6s infinite; }
+        .b-ear-l { animation: earTwitch 9s ease-in-out 0.4s infinite; }
+        .b-ear-r { animation: earTwitch 9s ease-in-out 3.2s infinite; }
+
+        /* ==========================================
+   24. EMERGENCY BUTTON PULSE — handled in section 8
+   ========================================== */
+
+        /* ==========================================
+   10. PEEKING CAT DECORATION
+   ========================================== */
+        .peeking-cat {
+            position: fixed;
+            bottom: 0;
+            right: 2.5rem;
+            width: 160px;
+            height: 119px;
+            overflow: hidden;
+            pointer-events: all;
+            z-index: 500;
+            cursor: pointer;
+            animation: blackCatBob 5s ease-in-out 0.5s infinite;
+            transition: filter 0.3s ease;
+        }
+        .peeking-cat svg { display: block; width: 160px; height: 174px; }
+        .peeking-cat:hover {
+            animation: none;
+            transform: translateY(-8px) scale(1.05);
+            filter: drop-shadow(0 0 14px rgba(236,72,153,0.38));
+        }
+        .peeking-cat.cat-focused {
+            animation: none !important;
+            transform: translateY(-10px) !important;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1) !important;
+        }
+        @keyframes blackCatBob {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-5px); }
+        }
+
+        /* Orange upside-down cat */
+        .peeking-cat-top {
+            position: fixed;
+            top: 47px;
+            left: 2.5rem;
+            width: 160px;
+            height: 110px;
+            overflow: hidden;
+            pointer-events: all;
+            z-index: 500;
+            cursor: pointer;
+            animation: orangeCatBob 5.5s ease-in-out infinite;
+            transition: filter 0.3s ease;
+        }
+        .peeking-cat-top svg { display: block; width: 160px; }
+        .peeking-cat-top:hover {
+            animation: none;
+            transform: translateY(8px) scale(1.05);
+            filter: drop-shadow(0 0 14px rgba(234,88,12,0.38));
+        }
+        @keyframes orangeCatBob {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(6px); }
+        }
+
+        /* Hover particles */
+        .cat-heart {
+            position: fixed;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 9999;
+            animation: catHeartFloat 0.9s ease forwards;
+        }
+        @keyframes catHeartFloat {
+            0%   { transform: translateY(0) scale(0.4); opacity: 0; }
+            25%  { opacity: 1; transform: translateY(-10px) scale(1.1); }
+            100% { transform: translateY(-42px) scale(0.7); opacity: 0; }
+        }
+
     </style>
 </head>
 
 <body>
+    <!-- ── Background decorations ─────────────────────────────────── -->
+    <div class="bg-floats" aria-hidden="true">
+
+        <!-- Paw prints scattered -->
+        <svg class="float-el" viewBox="0 0 64 64" style="width:38px;top:7%;left:4%;transform:rotate(-30deg);animation-delay:0s">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:26px;top:41%;left:1.5%;transform:rotate(12deg);animation-delay:2.3s">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:32px;top:74%;left:11%;transform:rotate(-18deg);animation-delay:4.7s">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:22px;top:84%;left:38%;transform:rotate(22deg);animation-delay:1.8s">
+            <g fill="#ec4899">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:30px;top:11%;right:10%;transform:rotate(20deg);animation-delay:3.2s">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:34px;top:57%;right:3%;transform:rotate(-22deg);animation-delay:5.1s">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 64 64" style="width:24px;top:87%;right:23%;transform:rotate(8deg);animation-delay:2.7s">
+            <g fill="#ec4899">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <!-- Extra small paw center-ish -->
+        <svg class="float-el" viewBox="0 0 64 64" style="width:19px;top:55%;left:50%;transform:rotate(-10deg);animation-delay:6.0s;opacity:0.09">
+            <g fill="#f472b6">
+                <ellipse cx="32" cy="42" rx="17" ry="14"/>
+                <ellipse cx="13" cy="24" rx="8" ry="10" transform="rotate(-20 13 24)"/>
+                <ellipse cx="26" cy="13" rx="8" ry="10" transform="rotate(-5 26 13)"/>
+                <ellipse cx="41" cy="13" rx="8" ry="10" transform="rotate(8 41 13)"/>
+                <ellipse cx="53" cy="25" rx="8" ry="10" transform="rotate(22 53 25)"/>
+            </g>
+        </svg>
+
+        <!-- Yarn balls -->
+        <svg class="float-el" viewBox="0 0 60 60" style="width:46px;top:27%;left:5%;animation-delay:1.2s;opacity:0.20">
+            <circle cx="30" cy="30" r="24" fill="#c026d3"/>
+            <path d="M8,18 Q30,8 52,18" stroke="#7e22ce" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M6,28 Q30,20 54,28" stroke="#7e22ce" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M8,38 Q30,48 52,38" stroke="#7e22ce" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M18,6 Q12,30 18,54" stroke="#7e22ce" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M42,6 Q48,30 42,54" stroke="#7e22ce" stroke-width="2" fill="none" opacity="0.55"/>
+            <circle cx="22" cy="19" r="4" fill="white" opacity="0.18"/>
+            <path d="M30,6 Q36,1 39,9" stroke="#7e22ce" stroke-width="1.8" fill="none"/>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 60 60" style="width:50px;top:32%;right:5%;animation-delay:3.8s;opacity:0.22">
+            <circle cx="30" cy="30" r="24" fill="#a855f7"/>
+            <path d="M8,18 Q30,8 52,18" stroke="#6b21a8" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M6,28 Q30,20 54,28" stroke="#6b21a8" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M8,38 Q30,48 52,38" stroke="#6b21a8" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M18,6 Q12,30 18,54" stroke="#6b21a8" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M42,6 Q48,30 42,54" stroke="#6b21a8" stroke-width="2" fill="none" opacity="0.55"/>
+            <circle cx="22" cy="19" r="4" fill="white" opacity="0.18"/>
+            <path d="M30,6 Q36,1 39,9" stroke="#6b21a8" stroke-width="1.8" fill="none"/>
+        </svg>
+
+        <svg class="float-el" viewBox="0 0 60 60" style="width:36px;top:69%;right:17%;animation-delay:5.5s;opacity:0.18">
+            <circle cx="30" cy="30" r="24" fill="#ec4899"/>
+            <path d="M8,18 Q30,8 52,18" stroke="#9d174d" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M6,28 Q30,20 54,28" stroke="#9d174d" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M8,38 Q30,48 52,38" stroke="#9d174d" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M18,6 Q12,30 18,54" stroke="#9d174d" stroke-width="2" fill="none" opacity="0.55"/>
+            <path d="M42,6 Q48,30 42,54" stroke="#9d174d" stroke-width="2" fill="none" opacity="0.55"/>
+            <circle cx="22" cy="19" r="4" fill="white" opacity="0.18"/>
+            <path d="M30,6 Q36,1 39,9" stroke="#9d174d" stroke-width="1.8" fill="none"/>
+        </svg>
+
+        <!-- Wavy yarn string -->
+        <svg class="float-el" viewBox="0 0 130 36" style="width:100px;top:63%;left:3%;animation-delay:6.5s;opacity:0.17">
+            <path d="M0,18 C18,3 28,33 46,18 C64,3 74,33 92,18 C110,3 120,33 130,18"
+                  stroke="#f472b6" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Sparkle / plus crosses -->
+        <span class="float-el" style="top:22%;left:24%;font-size:1.3rem;color:#f472b6;animation-delay:0.8s;line-height:1">✦</span>
+        <span class="float-el" style="top:49%;left:45%;font-size:1.0rem;color:#a855f7;animation-delay:3.0s;line-height:1">✦</span>
+        <span class="float-el" style="top:32%;right:22%;font-size:1.1rem;color:#f472b6;animation-delay:1.5s;line-height:1">✦</span>
+        <span class="float-el" style="top:71%;right:37%;font-size:0.9rem;color:#ec4899;animation-delay:4.2s;line-height:1">✦</span>
+        <span class="float-el" style="top:16%;left:52%;font-size:0.85rem;color:#c026d3;animation-delay:7.0s;line-height:1">✦</span>
+        <span class="float-el" style="top:80%;left:60%;font-size:0.95rem;color:#f472b6;animation-delay:2.1s;line-height:1">✦</span>
+
+    </div>
+    <!-- ────────────────────────────────────────────────────────────── -->
+
     <header class="global-navbar">
         <div class="navbar-brand">
             <h3><a href="/">Me<svg class="logo-paw" viewBox="0 0 64 64" aria-hidden="true">
                         <defs>
                             <linearGradient id="pawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#38bdf8" />
-                                <stop offset="100%" stop-color="#2dd4bf" />
+                                <stop offset="0%" stop-color="#f472b6" />
+                                <stop offset="50%" stop-color="#ec4899" />
+                                <stop offset="100%" stop-color="#a855f7" />
                             </linearGradient>
                         </defs>
                         <g fill="url(#pawGradient)">
@@ -496,6 +1329,207 @@
     <div class="main-content">
         {{{body}}}
     </div>
+
+    <!-- Orange upside-down cat peeking from header -->
+    <div class="peeking-cat-top" aria-hidden="true">
+        <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="oFur" cx="42%" cy="40%" r="60%">
+                    <stop offset="0%"   stop-color="#fdba74"/>
+                    <stop offset="55%"  stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#c2410c"/>
+                </radialGradient>
+                <radialGradient id="oIrisL" cx="35%" cy="30%" r="68%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#fffbeb"/>
+                    <stop offset="30%"  stop-color="#fde68a"/>
+                    <stop offset="65%"  stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                </radialGradient>
+                <radialGradient id="oIrisR" cx="35%" cy="30%" r="68%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#fffbeb"/>
+                    <stop offset="30%"  stop-color="#fde68a"/>
+                    <stop offset="65%"  stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                </radialGradient>
+            </defs>
+
+            <!-- Left paw -->
+            <ellipse cx="14" cy="18" rx="14" ry="10" fill="#f97316" stroke="#b84000" stroke-width="1.2"/>
+            <ellipse cx="6"  cy="12" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="14" cy="10" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="22" cy="12" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="6"  cy="13.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.9"/>
+            <ellipse cx="14" cy="12"   rx="2.5" ry="1.8" fill="#fda4af" opacity="0.9"/>
+            <ellipse cx="22" cy="13.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.9"/>
+
+            <!-- Right paw -->
+            <ellipse cx="106" cy="18" rx="14" ry="10" fill="#f97316" stroke="#b84000" stroke-width="1.2"/>
+            <ellipse cx="98"  cy="12" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="106" cy="10" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="114" cy="12" rx="5"  ry="4"  fill="#ea580c" stroke="#b84000" stroke-width="1"/>
+            <ellipse cx="98"  cy="13.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.9"/>
+            <ellipse cx="106" cy="12"   rx="2.5" ry="1.8" fill="#fda4af" opacity="0.9"/>
+            <ellipse cx="114" cy="13.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.9"/>
+
+            <!-- Head -->
+            <ellipse cx="60" cy="38" rx="38" ry="34" fill="url(#oFur)" stroke="#b84000" stroke-width="1.5"/>
+
+            <!-- Left ear (pointing down — cat peeking upside-down) -->
+            <polygon points="28,58 18,83 42,64" fill="#ea580c" stroke="#b84000" stroke-width="1.2" class="o-ear-l"/>
+            <polygon points="30,60 22,79 40,65" fill="#fda4af" opacity="0.8"/>
+
+            <!-- Right ear -->
+            <polygon points="92,58 102,83 78,64" fill="#ea580c" stroke="#b84000" stroke-width="1.2" class="o-ear-r"/>
+            <polygon points="90,60 98,79 80,65" fill="#fda4af" opacity="0.8"/>
+
+            <!-- Tabby forehead stripes (below eyes on screen = forehead for inverted cat) -->
+            <path d="M49,46 Q60,43 71,46" stroke="#c2410c" stroke-width="2"   fill="none" stroke-linecap="round" opacity="0.45"/>
+            <path d="M46,52 Q60,49 74,52" stroke="#c2410c" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.32"/>
+
+            <!-- Blush cheeks -->
+            <ellipse cx="35" cy="42" rx="8.5" ry="5" fill="#fb7185" opacity="0.28"/>
+            <ellipse cx="85" cy="42" rx="8.5" ry="5" fill="#fb7185" opacity="0.28"/>
+
+            <!-- Eyebrows (just below eyes on screen = above eyes from face perspective) -->
+            <path d="M34,43 Q43,46 52,43" stroke="#b84000" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <path d="M68,43 Q77,46 86,43" stroke="#b84000" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+            <!-- Muzzle patch -->
+            <ellipse cx="60" cy="32" rx="14" ry="8" fill="#fdba74" opacity="0.4"/>
+
+            <!-- Left eye -->
+            <circle cx="44" cy="38" r="11.5" fill="url(#oIrisL)" stroke="#78350f" stroke-width="0.8"/>
+            <circle cx="44" cy="38" r="7.5"  fill="#111" id="o-pupil-l" data-cx="44" data-cy="38" class="cat-eye-blink"/>
+            <circle cx="40" cy="34" r="3.2"  fill="white"/>
+            <circle cx="46" cy="42" r="1.3"  fill="white" opacity="0.7"/>
+
+            <!-- Right eye -->
+            <circle cx="76" cy="38" r="11.5" fill="url(#oIrisR)" stroke="#78350f" stroke-width="0.8"/>
+            <circle cx="76" cy="38" r="7.5"  fill="#111" id="o-pupil-r" data-cx="76" data-cy="38" class="cat-eye-blink"/>
+            <circle cx="72" cy="34" r="3.2"  fill="white"/>
+            <circle cx="78" cy="42" r="1.3"  fill="white" opacity="0.7"/>
+
+            <!-- Mouth (at nose tip y=26, U shape opening upward) -->
+            <path d="M60,26 Q55,22.5 52,23.5" stroke="#c2410c" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <path d="M60,26 Q65,22.5 68,23.5" stroke="#c2410c" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+            <!-- Nose (tip at y=26, curved base at y=30) -->
+            <path d="M57.5,30 L60,26 L62.5,30 Q60,32.5 57.5,30Z" fill="#fda4af" stroke="#f9a8d4" stroke-width="0.5"/>
+
+            <!-- Whiskers left (moved up, away from eyes) -->
+            <line x1="19" y1="22" x2="52" y2="23" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+            <line x1="17" y1="26" x2="52" y2="26" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+            <line x1="19" y1="30" x2="52" y2="29" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+            <!-- Whiskers right -->
+            <line x1="101" y1="22" x2="68" y2="23" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+            <line x1="103" y1="26" x2="68" y2="26" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+            <line x1="101" y1="30" x2="68" y2="29" stroke="rgba(255,245,200,0.85)" stroke-width="0.9"/>
+        </svg>
+    </div>
+
+    <script src="/js/cursor.js" defer></script>
+
+    <!-- Peeking cat decoration -->
+    <div class="peeking-cat" aria-hidden="true">
+        <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="bFur" cx="40%" cy="36%" r="60%">
+                    <stop offset="0%"   stop-color="#2e2e2e"/>
+                    <stop offset="50%"  stop-color="#1a1a1a"/>
+                    <stop offset="100%" stop-color="#080808"/>
+                </radialGradient>
+                <radialGradient id="bIrisL" cx="35%" cy="30%" r="68%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#fffbeb"/>
+                    <stop offset="30%"  stop-color="#fde68a"/>
+                    <stop offset="65%"  stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                </radialGradient>
+                <radialGradient id="bIrisR" cx="35%" cy="30%" r="68%" gradientUnits="objectBoundingBox">
+                    <stop offset="0%"   stop-color="#fffbeb"/>
+                    <stop offset="30%"  stop-color="#fde68a"/>
+                    <stop offset="65%"  stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                </radialGradient>
+            </defs>
+
+            <!-- Body -->
+            <ellipse cx="60" cy="123" rx="32" ry="22" fill="#1a1a1a"/>
+
+            <!-- Left paw -->
+            <ellipse cx="14" cy="87" rx="14" ry="10" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="1.2"/>
+            <!-- Pink pads -->
+            <ellipse cx="6"  cy="84.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.85"/>
+            <ellipse cx="14" cy="83"   rx="2.5" ry="1.8" fill="#fda4af" opacity="0.85"/>
+            <ellipse cx="22" cy="84.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.85"/>
+            <!-- Toes at/below screen edge -->
+            <ellipse cx="6"  cy="91" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+            <ellipse cx="14" cy="94" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+            <ellipse cx="22" cy="91" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+
+            <!-- Right paw -->
+            <ellipse cx="106" cy="87" rx="14" ry="10" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="1.2"/>
+            <ellipse cx="98"  cy="84.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.85"/>
+            <ellipse cx="106" cy="83"   rx="2.5" ry="1.8" fill="#fda4af" opacity="0.85"/>
+            <ellipse cx="114" cy="84.5" rx="2"   ry="1.5" fill="#fda4af" opacity="0.85"/>
+            <ellipse cx="98"  cy="91" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+            <ellipse cx="106" cy="94" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+            <ellipse cx="114" cy="91" rx="5"  ry="4"  fill="#111" stroke="#0a0a0a" stroke-width="1"/>
+
+            <!-- Head -->
+            <ellipse cx="60" cy="62" rx="38" ry="34" fill="url(#bFur)" stroke="#0a0a0a" stroke-width="1.5"/>
+
+            <!-- Fur sheen highlight -->
+            <ellipse cx="46" cy="48" rx="14" ry="9" fill="#3a3a3a" opacity="0.45"/>
+
+            <!-- Left ear (pointing up) -->
+            <polygon points="28,42 18,18 42,36" fill="#151515" stroke="#0a0a0a" stroke-width="1.2" class="b-ear-l"/>
+            <polygon points="30,40 23,22 40,36" fill="#fda4af" opacity="0.72"/>
+
+            <!-- Right ear -->
+            <polygon points="92,42 102,18 78,36" fill="#151515" stroke="#0a0a0a" stroke-width="1.2" class="b-ear-r"/>
+            <polygon points="90,40 97,22 80,36" fill="#fda4af" opacity="0.72"/>
+
+            <!-- Blush cheeks -->
+            <ellipse cx="35" cy="66" rx="8.5" ry="5" fill="#fb7185" opacity="0.24"/>
+            <ellipse cx="85" cy="66" rx="8.5" ry="5" fill="#fb7185" opacity="0.24"/>
+
+            <!-- Eyebrows -->
+            <path d="M34,51 Q43,48 52,51" stroke="#555" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M68,51 Q77,48 86,51" stroke="#555" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+            <!-- Muzzle patch -->
+            <ellipse cx="60" cy="68" rx="14" ry="8" fill="#2e2e2e" opacity="0.55"/>
+
+            <!-- Left eye -->
+            <circle cx="44" cy="62" r="11.5" fill="url(#bIrisL)" stroke="#78350f" stroke-width="0.8"/>
+            <circle cx="44" cy="62" r="7.5"  fill="#111" id="b-pupil-l" data-cx="44" data-cy="62" class="cat-eye-blink"/>
+            <circle cx="40" cy="58" r="3.2"  fill="white"/>
+            <circle cx="46" cy="66" r="1.3"  fill="white" opacity="0.7"/>
+
+            <!-- Right eye -->
+            <circle cx="76" cy="62" r="11.5" fill="url(#bIrisR)" stroke="#78350f" stroke-width="0.8"/>
+            <circle cx="76" cy="62" r="7.5"  fill="#111" id="b-pupil-r" data-cx="76" data-cy="62" class="cat-eye-blink"/>
+            <circle cx="72" cy="58" r="3.2"  fill="white"/>
+            <circle cx="78" cy="66" r="1.3"  fill="white" opacity="0.7"/>
+
+            <!-- Nose (tip pointing down for right-side-up cat) -->
+            <path d="M57.5,71.5 L60,74 L62.5,71.5 Q60,69 57.5,71.5Z" fill="#fda4af" stroke="#f9a8d4" stroke-width="0.5"/>
+
+            <!-- Smile -->
+            <path d="M60,75 Q55,79 52,77.5" stroke="#555" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.85"/>
+            <path d="M60,75 Q65,79 68,77.5" stroke="#555" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+            <!-- Whiskers left -->
+            <line x1="19" y1="68" x2="52" y2="70" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+            <line x1="17" y1="73" x2="52" y2="73" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+            <line x1="19" y1="78" x2="52" y2="76" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+            <!-- Whiskers right -->
+            <line x1="101" y1="68" x2="68" y2="70" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+            <line x1="103" y1="73" x2="68" y2="73" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+            <line x1="101" y1="78" x2="68" y2="76" stroke="rgba(200,200,200,0.85)" stroke-width="0.9"/>
+        </svg>
+    </div>
+    <script src="/js/cats.js" defer></script>
 </body>
 
 </html>

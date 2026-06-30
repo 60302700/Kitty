@@ -1,6 +1,5 @@
-import express, { Router } from "express";
-import { logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware } from "./presentation.js";
-import { connectDB } from "./persistance.js";
+import express from "express";
+import { connectDB, logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware } from "./presentation.js";
 
 const app = express();
 
@@ -46,8 +45,14 @@ async function requireAuth(req, res, next) {
 }
 // ───────────────────────────────────────────────────────────────────────────
 
+<<<<<<< HEAD
 app.get("/register", (req, res) => {
     res.render("register", { title: "Register", isLoggedIn: Loggedin(req) });
+=======
+app.get("/register", async (req, res) => {
+    const isLoggedIn = await Loggedin(req);
+    res.render("register", { title: "Register", isLoggedIn });
+>>>>>>> d56fca506b11a28a6212da18be2b5e2972b6f6ce
 });
 
 app.get("/login", async (req, res) => {
@@ -83,14 +88,14 @@ app.post("/login", async (req, res) => {
     try {
         const session = await authenticateUser(email, password);
         if (!session) {
-            res.render("login.handlebars", { layout: false, title: "Login", error: "Invalid email or password", values: { email: email } });
+            res.render("login", { title: "Login", error: "Invalid email or password", values: { email: email } });
             return;
         } else {
             res.cookie("session", session, { maxAge: 5 * 60 * 60 * 1000, httpOnly: true });
             res.redirect("/homepage");
         }
     } catch (err) {
-        res.render("login.handlebars", { layout: false, title: "Login", error: err.message, values: { email: email } });
+        res.render("login", { title: "Login", error: err.message, values: { email: email } });
     }
 });
 
@@ -136,15 +141,19 @@ app.post("/scan/:eventId/claim", async (req, res) => {
 
 app.get("/homepage", requireAuth, async (req, res) => {
     const isLoggedIn = await Loggedin(req);
-    res.render("t", { title: "MeoW Safety Gateway", isLoggedIn: isLoggedIn });
+    res.render("scan", { title: "MeoW Safety Gateway", isLoggedIn });
 });
 // ── Logout ─────────────────────────────────────────────────────────────────
 app.get("/logout", async (req, res) => {
     res.clearCookie("session");
-    console.log(await logoutUser(getSessionCookie(req)))
+    await logoutUser(getSessionCookie(req));
     res.redirect("/");
 });
 // ───────────────────────────────────────────────────────────────────────────
+
+app.use((req, res) => {
+    res.status(404).render("404", { layout: false });
+});
 
 const port = process.env.PORT || 3000;
 connectDB().then(() => {
