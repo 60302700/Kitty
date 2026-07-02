@@ -1,5 +1,5 @@
 import express from "express";
-import { connectDB, logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware } from "./presentation.js";
+import { connectDB, logoutUser, registerUser, authenticateUser, handleScan, getEmergencyView, claimGuardian, engine, checkSessionMiddleware, getUserHomepage } from "./presentation.js";
 
 const app = express();
 
@@ -134,9 +134,27 @@ app.post("/scan/:eventId/claim", async (req, res) => {
 });
 
 
-app.get("/homepage", requireAuth, async (req, res) => {
+app.get("/homepage", async (req, res) => {
     const isLoggedIn = await Loggedin(req);
-    res.render("scan", { title: "MeoW Safety Gateway", isLoggedIn });
+    if (!isLoggedIn) {
+        return res.redirect("/");
+    }
+    const sessionId = getSessionCookie(req);
+    const data = await getUserHomepage(sessionId);
+    if (!data) {
+        return res.redirect("/");
+    }
+    const { user, cats, guardians } = data;
+    res.render("homepage", {
+        title: `${user.name}'s Homepage`,
+        isLoggedIn,
+        user,
+        cats,
+        guardians,
+        hasCats: cats && cats.length > 0,
+        hasGuardians: guardians && guardians.length > 0,
+        layout: "hp"
+    });
 });
 // ── Logout ─────────────────────────────────────────────────────────────────
 app.get("/logout", async (req, res) => {

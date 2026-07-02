@@ -5,6 +5,7 @@ import {
     findUserByEmail,
     getCatByQrCode,
     getCatById,
+    getCatsByOwner,
     createEmergencyEvent,
     getEmergencyEventById,
     getGuardiansByOwner,
@@ -68,4 +69,14 @@ async function logout(sessionId) {
     return await deleteSession(sessionId);
 }
 
-export { connectDB, logout, login, registerUser, handleScan, getEmergencyView, claimGuardian, checkSession };
+async function getUserHomepage(sessionId) {
+    const session = await getSessionBySessionId(sessionId);
+    if (!session) return null;
+    const user = await findUserByEmail(session.email);
+    if (!user) return null;
+    const cats = await getCatsByOwner(user._id);
+    const guardians = await getGuardiansByOwner(user._id);
+    return { user, cats, guardians };
+}
+
+export { connectDB, logout, login, registerUser, handleScan, getEmergencyView, claimGuardian, checkSession, getUserHomepage };
